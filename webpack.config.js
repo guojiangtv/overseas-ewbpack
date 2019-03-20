@@ -181,9 +181,17 @@ module.exports = {
                 options: {
                     limit: 5120,
                     name: function(p) {
-                        let tem_path = p.split(/\\img\\/)[1];
-                        tem_path = tem_path.replace(/\\/g, "/");
-                        return "img/" + tem_path + "?v=[hash:8]";
+                        let tem_path
+                        if (p.indexOf('/') != -1) {
+                            // linux
+                            tem_path = p.split(/\/img\//)[1]
+                        } else {
+                            // win
+                            tem_path = p.split(/\\img\\/)[1]
+                        }
+                        tem_path = tem_path.replace(/\\/g, '/')
+
+                        return 'img/' + tem_path + '?v=[hash:8]'
                     }
                 }
             },
