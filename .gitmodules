@@ -1,0 +1,3 @@
+[submodule "national-overseas"]
+	path = national-overseas
+	url = git@gitlab.cblive.tv:root/national-overseas.git
