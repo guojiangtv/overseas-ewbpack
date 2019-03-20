@@ -1,7 +1,8 @@
 .DS_Store
 node_modules/
 manifest/
-
+national-overseas/*
+!national-overseas/.git
 entry.txt
 
 npm-debug.log*
