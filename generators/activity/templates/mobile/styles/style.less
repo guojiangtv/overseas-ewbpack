@@ -1,0 +1,29 @@
+@bf: 108rem;
+@baseImgPath: '<%= imgPath %>';
+
+//滚动更流畅
+body {
+    -webkit-overflow-scrolling: touch;
+    /*ios*/
+}
+
+.ellipsis() {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.transformCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+// 插入背景图样式
+.bgms(@imgName, @width, @height) {
+    background-image: url("@{baseImgPath}/@{imgName}");
+    background-size: @width / @bf @height / @bf;
+}
+
+/* 活动单独样式部分 */
+
