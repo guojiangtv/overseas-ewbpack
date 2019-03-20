@@ -57,7 +57,6 @@ if(isPc){
     dll_manifest_name = 'dll_pc_manifest';
     //入口js文件配置以及公共模块配置
     entries = getEntry(entryDir);
-    entries.vendors = ['common'];
 }else if(isVn){
     console.log('***********************越南版编译*************************');
     baseEntryDir = basePath+ 'src/vietnam/mobile/';

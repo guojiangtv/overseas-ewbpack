@@ -108,6 +108,7 @@ module.exports = {
         // 服务器时间的更改会导致文件创建时间不准确
         new CleanWebpackPlugin([
             'css/lib/dll.*.css',
+            'css/lib/dll.*.css.map',
             'js/lib/dll.*.js',
             'js/lib/dll.*.js.map'
         ], {
