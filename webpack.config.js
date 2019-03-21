@@ -30,8 +30,8 @@ let resolveConfigDir = './config/resolve.config.js';
 
 
 //忽略不必要编译的文件
-// var entryIgnore = require('./entryignore.json');
-let baseEntryDir,entryDir,outputDir,outputPublicDir,basePageEntry,basePageOutput,cleanDir,cleanOptions,dll_manifest_name,browserSyncBaseDir,entryFile,entries={},basePath='./national-overseas/';
+let entryIgnore = require('./entryignore.json');
+let baseEntryDir,entryDir,outputDir,outputPublicDir,basePageEntry,basePageOutput,cleanDir,cleanOptions,dll_manifest_name,browserSyncBaseDir,entryFile,entries={},inlineSource,basePath='./national-overseas/';
 
 if(isPc){
     //pc版目录配置
@@ -39,7 +39,7 @@ if(isPc){
     baseEntryDir = basePath+ 'src/v2/pc/';
     entryDir = baseEntryDir + '**/*.js';
     outputDir = path.resolve(__dirname, basePath+ 'dist/v2/pc/');
-    outputPublicDir = 'https://static.cblive.tv/dist/v2/pc/';
+    outputPublicDir = '//static.cblive.tv/dist/v2/pc/';
     basePageEntry = basePath+ 'html/src/pc/';
     basePageOutput = browserSyncBaseDir =basePath+ 'html/dist/pc/';
     //clean folder
@@ -47,16 +47,11 @@ if(isPc){
         path.resolve(__dirname,  basePath+'dist/v2/pc/js'),
         path.resolve(__dirname,  basePath+'dist/v2/pc/css'),
     ];
-    cleanOptions={
-        root:outputDir,
-        exclude:[
-            'lib'
-        ]
-    };
-
+    inlineSource = [
+        `${baseEntryDir}js/components/monitor/globalMonitor.js`
+    ];
     dll_manifest_name = 'dll_pc_manifest';
     //入口js文件配置以及公共模块配置
-    entries = getEntry(entryDir);
 }else if(isVn){
     console.log('***********************越南版编译*************************');
     baseEntryDir = basePath+ 'src/vietnam/mobile/';
@@ -71,15 +66,12 @@ if(isPc){
         path.resolve(__dirname,  basePath+'dist/vietnam/mobile/css'),
         path.resolve(__dirname,  basePath+'dist/vietnam/mobile/js')
     ];
-    cleanOptions={
-        root:outputDir,
-        exclude:[
-            'lib'
-        ]
-    };
+    inlineSource = [
+        `${baseEntryDir}js/components/flexible.js`,
+        `${baseEntryDir}js/components/monitor/globalMonitor.js`
+    ];
     dll_manifest_name = 'dll_vn_manifest';
     //入口js文件配置以及公共模块配置
-    entries = entryFile ? baseEntryDir+'js/'+ entryFile+'.js' : getEntry(entryDir);
 }else{
     //触屏版目录配置
     console.log('***********************触屏版编译*************************');
@@ -89,22 +81,25 @@ if(isPc){
     outputPublicDir = '//static.joylive.tv/dist/v2/mobile/';
     basePageEntry = basePath+ 'html/src/mobile/';
     basePageOutput = browserSyncBaseDir =basePath+ 'html/dist/mobile/';
-
     //clean folder
     cleanDir = [
         path.resolve(__dirname,  basePath+'dist/v2/mobile/css'),
         path.resolve(__dirname,  basePath+'dist/v2/mobile/js'),
     ];
-    cleanOptions={
-        root:outputDir,
-        exclude:[
-            'lib'
-        ]
-    };
+    inlineSource = [
+        `${baseEntryDir}js/components/flexible.js`,
+        `${baseEntryDir}js/components/monitor/globalMonitor.js`
+    ];
     dll_manifest_name = 'dll_manifest';
-    //入口js文件配置以及公共模块配置
-    entries = getEntry(entryDir);
 }
+cleanOptions={
+    root:outputDir,
+    exclude:[
+        'lib'
+    ]
+};
+//入口js文件配置以及公共模块配置
+entries = entryFile ? baseEntryDir+'js/'+ entryFile+'.js' : getEntry(entryDir);
 
 
 console.log(entries);
@@ -274,10 +269,7 @@ module.exports = {
         }),
         new HtmlWebpackIncludeJsPlugin({
             js: [{
-                path: [
-                    `${baseEntryDir}js/components/flexible.js`,
-                    `${baseEntryDir}js/components/monitor/globalMonitor.js`
-                ], // 文件访问的绝对路径, 如：g:/js/lib/common.js, 此时需要配置inject: inline
+                path: inlineSource, // 文件访问的绝对路径, 如：g:/js/lib/common.js, 此时需要配置inject: inline
                 inject: 'inline' // 插入方式，内联
             }]
         })
@@ -328,21 +320,19 @@ for (var pathname in pages) {
  * @return {[type]}          [description]
  */
 function getEntry(globPath) {
-    var entries = {};
+    let entries = {}
     glob.sync(globPath).forEach(function(entry) {
-        //排出相关文件
-        if (entry.indexOf('layouts') == -1 && entry.indexOf('lib') == -1 && entry.indexOf('components') == -1 && entry.indexOf('common') == -1 && entry.indexOf('d.ts') == -1 ) {
-            //判断是js文件还是html模板文件
+        //排出相关入口文件
+        if(entry.indexOf('layouts') == -1 && entry.indexOf('lib') == -1 && entry.indexOf('common') == -1 && entry.indexOf('components') == -1 && entry.indexOf('.vue') == -1 && entry.indexOf('d.ts') == -1){
+            //判断是js文件还是ejs文件
             let isEjsFile = entry.indexOf('.ejs') !== -1;
             let dirArr = isEjsFile ?
-                entry.split(basePageEntry)[1].split('.ejs')[0]:
-                entry.split('/js/')[1].split('.')[0] ;
-
-            // basename = dirArr.join('/');
-
-            // if (entryIgnore.indexOf(basename) == -1) {
+            entry.split(basePageEntry)[1].split('.ejs')[0]:
+            entry.split('/js/')[1].split('.')[0] ;
+            // 排除忽略列表中的文件
+            if (entryIgnore.indexOf(dirArr) == -1) {
                 entries[dirArr] = entry;
-            // }
+            }
 
         }
     });
@@ -387,19 +377,21 @@ if (prod) {
     console.log(chalk.red('当前编译环境：dev'));
     let file = './entry.txt'
     fs.access(file, (err) => {
-        if(!err){
-            fs.readFile(file,function(err,data){
-                if(err){
-                    console.log('read error')
-                }else{
-                    entryFile = data.toString() //将buffer对象转换为字符串
-                    console.log(chalk.yellow('编译文件目录为：'+entryFile))
-
-                }
-            })
-        }else{
-            console.log(chalk.red('编译入口文件不存在，请在overseas-webpack目录下新建entry.txt文件'))
+        if(err){
+            console.log(chalk.red('编译入口文件不存在，将执行全部文件编译。'))
+            return false
         }
+        fs.readFile(file,function(err,data){
+            if(err){
+                console.log('read error',err)
+                return false
+            }
+            if(data.toString()){//将buffer对象转换为字符串
+                console.log(chalk.yellow('编译文件目录为：'+data.toString()))
+            } else{
+                console.log(chalk.red('执行全部文件编译'))
+            }
+        })
     });
     module.exports.devtool = 'inline-source-map';
 }

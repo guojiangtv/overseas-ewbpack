@@ -11,7 +11,7 @@ module.exports = {
     // 模块别名的配置，为了使用方便，一般来说所有模块都是要配置一下别名的
     alias: {
         'vue': vue_source,
-        'guide': path.resolve(__dirname, baseEntryDir + 'js/common/guide.js'),
+        'service': path.resolve(__dirname, baseEntryDir + 'js/common/service.js'),
         'layer': path.resolve(__dirname, baseEntryDir + 'js/components/layer.js'),
         'report':path.resolve(__dirname, baseEntryDir + 'js/components/monitor/report.js'),
         'common': path.resolve(__dirname, baseEntryDir + 'js/common/common.js'),

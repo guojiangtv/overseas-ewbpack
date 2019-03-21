@@ -1,5 +1,5 @@
 {
-  "name": "overseas-vue",
+  "name": "overseas-webpack",
   "version": "1.0.0",
   "description": "the project used vue2.5.13 + webpack3.10.0",
   "main": "webpack-dll.config.js",
@@ -52,7 +52,7 @@
     "ejs-loader": "^0.3.0",
     "eruda": "^1.5.4",
     "eslint": "4.15.0",
-    "eslint-config-standard": "10.2.1",
+    "eslint-config-standard": "7.0.0",
     "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "2.7.0",
@@ -83,7 +83,8 @@
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^0.6.2",
     "vue-class-component": "^6.3.2",
-    "vue-eslint-parser": "^3.2.2",
+    "vue-eslint-parser": "2.0.1",
+    "vue-loader": "https://github.com/graux/vue-loader#a0d6b77",
     "vue-property-decorator": "^7.2.0",
     "vue-template-compiler": "2.5.13",
     "webpack": "^3.10.0",
@@ -98,10 +99,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guojiangtv/overseas.git"
+    "url": "git+https://github.com/guojiangtv/overseas-webpack.git"
   },
   "bugs": {
-    "url": "https://github.com/guojiangtv/overseas/issues"
+    "url": "https://github.com/guojiangtv/overseas-webpack/issues"
   },
-  "homepage": "https://github.com/guojiangtv/overseas#readme"
+  "homepage": "https://github.com/guojiangtv/overseas-webpack#readme"
 }
