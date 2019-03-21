@@ -1,7 +1,7 @@
 module.exports = {
     /* Base Path */
-    outputHtmlDir: '/guojiang/overseas/html/src', // html输出路径
-    outputStaticDir: '/guojiang/overseas/src/v2', // 静态文件相关输出路径
+    outputHtmlDir: '/guojiang/overseas-webpack/national-overseas/html/src', // html输出路径
+    outputStaticDir: '/guojiang/overseas-webpack/national-overseas/src/v2', // 静态文件相关输出路径
 
     /* Templates Relative Path */
     outputHtmlPCDir: 'pc/',
