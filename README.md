@@ -8,7 +8,8 @@ import {showLoading} from 'common'
 git clone此项目后
 yarn install安装必要的项目依赖和开发依赖包
 
-主项目文件在海外gitlab上，需要配置host 107.150.99.209 gitlab.cblive.tv 访问地址https://gitlab.cblive.tv
+主项目文件在海外gitlab上，需要配置host 107.150.99.209 gitlab.cblive.tv
+访问地址https://gitlab.cblive.tv
 git clone git@gitlab.cblive.tv:root/national-overseas.git
 
 主项目文件下载完后 先建立自己的开发分支 feature/***  在自己的分支上开发
@@ -16,14 +17,14 @@ git clone git@gitlab.cblive.tv:root/national-overseas.git
 发测试和线上同国内项目相同
 
 
-### mobile端编译命令
+#### mobile端编译命令
 yarn dll    打包公共文件生成dll.js
 yarn watch  开发编译，监测文件变化
 yarn build  打包
 yarn deploy 压缩打包
 #### 越南版mobile端编译命令  都加上vn_前缀
 yarn vn_dll
-### pc端编译命令 都加上pc_前缀
+#### pc端编译命令 都加上pc_前缀
 yarn pc_dll
 
 #### yeoman工具使用方法
