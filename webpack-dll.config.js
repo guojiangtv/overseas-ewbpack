@@ -24,21 +24,21 @@ if(isPc){
     entryDir = baseEntryDir + '**/*.js';
     outputDir = path.resolve(__dirname, './national-overseas/dist/v2/pc/');
     outputPublicDir = '//static.cblive.tv/dist/v2/pc/';
-    entries = ['vue','axios','layer','jquery','service'];
+    entries = ['vue','axios','layer','jquery'];
     dll_manifest_name = 'dll_pc_manifest';
 }else if(isVn){
     baseEntryDir = './national-overseas/src/vietnam/mobile/';
     entryDir = baseEntryDir + '**/*.js';
     outputDir = path.resolve(__dirname, './national-overseas/dist/vietnam/mobile/');
     outputPublicDir = '//static.cblive.tv/dist/v2/vietnam/mobile/';
-    entries = ['vue', 'axios', 'layer','service'];
+    entries = ['vue', 'axios', 'layer'];
     dll_manifest_name = 'dll_vn_manifest';
 }else{
     baseEntryDir = './national-overseas/src/v2/mobile/';
     entryDir = baseEntryDir + '**/*.*';
     outputDir = path.resolve(__dirname, './national-overseas/dist/v2/mobile/');
     outputPublicDir = '//static.cblive.tv/dist/v2/mobile/';
-    entries = ['vue', 'axios', 'layer','service'];
+    entries = ['vue', 'axios', 'layer'];
     dll_manifest_name = 'dll_manifest';
 }
 

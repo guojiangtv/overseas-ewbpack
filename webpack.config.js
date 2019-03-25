@@ -99,7 +99,8 @@ cleanOptions={
     ]
 };
 //入口js文件配置以及公共模块配置
-entries = entryFile ? baseEntryDir+'js/'+ entryFile+'.js' : getEntry(entryDir);
+entries = entryFile ? baseEntryDir+'js/'+ entryFile+'.js' : getEntry(entryDir)
+entries.manifest = ['service']
 
 
 console.log(entries);
@@ -263,13 +264,9 @@ module.exports = {
             assets: [getLatestFile('js/lib/dll.js')],
             append: false
         }),
-        new HtmlWebpackIncludeAssetsPlugin({
-            assets: [getLatestFile('css/lib/dll.css')],
-            append: false
-        }),
         new HtmlWebpackIncludeJsPlugin({
             js: [{
-                path: inlineSource, // 文件访问的绝对路径, 如：g:/js/lib/common.js, 此时需要配置inject: inline
+                path: inlineSource,
                 inject: 'inline' // 插入方式，内联
             }]
         })
