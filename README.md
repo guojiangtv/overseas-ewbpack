@@ -3,7 +3,7 @@
 ```js
 import {showLoading} from 'common'
 ```
-项目中已引入typescript编译，可参考活动cumulativeRecharge.ts
+项目中已引入typescript编译，可参考累充活动cumulativeRecharge
 
 git clone此项目后
 yarn install安装必要的项目依赖和开发依赖包
