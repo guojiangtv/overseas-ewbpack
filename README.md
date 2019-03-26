@@ -16,6 +16,11 @@ git clone git@gitlab.cblive.tv:root/national-overseas.git
 
 发测试和线上同国内项目相同
 
+### 注意点
+在ejs文件中直接引入图片时，需用require形式
+```
+<img src='${require("../../../../src/v2/mobile/img/recharge/index/Telkomsel.png")}' alt="">
+```
 
 #### mobile端编译命令
 yarn dll    打包公共文件生成dll.js
