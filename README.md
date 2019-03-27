@@ -1,17 +1,16 @@
 ### 海外版前端自动化编译构建工具使用说明
-此工具仅适用于海外前后端分离项目，之前的php项目仍就采用之前的gulp编译并手动发布
-
+此工具仅适用于海外前后端分离项目，之前的php项目仍就采用之前的gulp编译并手动发布  
 此项目采用非覆盖式编译，公共js文件打包成一个dll.js，common.js采用ES6 Module形式，项目中用到哪个方法直接import 引入该方法即可
 ```js
 import {showLoading} from 'common'
 ```
-项目中已引入typescript编译，可参考累充活动cumulativeRecharge
+项目中已引入typescript编译，可参考累充活动cumulativeRecharge  
 
-git clone此项目后
-yarn install安装必要的项目依赖和开发依赖包
+git clone此项目后  
+yarn install安装必要的项目依赖和开发依赖包  
 
-主项目文件在海外gitlab上，需要配置host 107.150.99.209 gitlab.cblive.tv
-访问地址https://gitlab.cblive.tv
+主项目文件在海外gitlab上，需要配置host 107.150.99.209 gitlab.cblive.tv  
+访问地址https://gitlab.cblive.tv   
 git clone git@gitlab.cblive.tv:root/national-overseas.git
 
 主项目文件下载完后 先建立自己的开发分支 feature/***  在自己的分支上开发
@@ -24,16 +23,16 @@ git clone git@gitlab.cblive.tv:root/national-overseas.git
 <img src='${require("../../../../src/v2/mobile/img/recharge/index/Telkomsel.png")}' alt="">
 ```
 
-建议在overseas-webpack文件夹下建立trunk文件夹并拉取已下svn地址 ，用于查看提交文件列表
-html文件夹        https://10.0.0.15/svn/develop/website/trunk/cblive/web/html
-dist/v2           https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/v2
-dist/vietnam      https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/vietnam
+建议在overseas-webpack文件夹下建立trunk文件夹并拉取已下svn地址 ，用于查看提交文件列表  
+html文件夹        https://10.0.0.15/svn/develop/website/trunk/cblive/web/html  
+dist/v2           https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/v2  
+dist/vietnam      https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/vietnam  
 
 #### mobile端编译命令
-yarn dll    打包公共文件生成dll.js
-yarn watch  开发编译，监测文件变化
-yarn build  打包
-yarn deploy 压缩打包
+yarn dll    打包公共文件生成dll.js  
+yarn watch  开发编译，监测文件变化  
+yarn build  打包  
+yarn deploy 压缩打包  
 #### 越南版mobile端编译命令  都加上vn_前缀
 yarn vn_dll
 #### pc端编译命令 都加上pc_前缀
@@ -68,7 +67,7 @@ Mock.mock('/worldcup/userrank', {
     ]
 });
 ```
-Mock能自动拦截页面js中发出的ajax请求，并将模拟的数据作为请求结果返回
+Mock能自动拦截页面js中发出的ajax请求，并将模拟的数据作为请求结果返回  
 至于如何模拟自己想要的数据可参考[语法规范](https://github.com/nuysoft/Mock/wiki/Syntax-Specification)
 
 *  在项目js文件中引入自己模拟的数据文件
