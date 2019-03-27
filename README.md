@@ -1,4 +1,6 @@
 ### 海外版前端自动化编译构建工具使用说明
+此工具仅适用于海外前后端分离项目，之前的php项目仍就采用之前的gulp编译并手动发布
+
 此项目采用非覆盖式编译，公共js文件打包成一个dll.js，common.js采用ES6 Module形式，项目中用到哪个方法直接import 引入该方法即可
 ```js
 import {showLoading} from 'common'
@@ -21,6 +23,11 @@ git clone git@gitlab.cblive.tv:root/national-overseas.git
 ```
 <img src='${require("../../../../src/v2/mobile/img/recharge/index/Telkomsel.png")}' alt="">
 ```
+
+建议在overseas-webpack文件夹下建立trunk文件夹并拉取已下svn地址 ，用于查看提交文件列表
+html文件夹        https://10.0.0.15/svn/develop/website/trunk/cblive/web/html
+dist/v2           https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/v2
+dist/vietnam      https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/vietnam
 
 #### mobile端编译命令
 yarn dll    打包公共文件生成dll.js
@@ -70,8 +77,3 @@ Mock能自动拦截页面js中发出的ajax请求，并将模拟的数据作为�
 import '../../../../../mock/worldcup.js';
 ```
 当本地开发完要发测试时需在项目js文件中注释掉引入的模拟数据文件
-
-
-
-
-
