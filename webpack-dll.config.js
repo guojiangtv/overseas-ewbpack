@@ -4,6 +4,7 @@ const chalk = require('chalk')
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //抽离css
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const HashedChunkIdsPlugin = require('./config/hashedChunkIdsPlugin.js')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 
@@ -123,8 +124,8 @@ module.exports = {
             root: outputDir
         }),
         //keep module.id stable when vender modules does not change
-        //new HashedChunkIdsPlugin(),
-        //new webpack.HashedModuleIdsPlugin(),
+        new HashedChunkIdsPlugin(),
+        new webpack.HashedModuleIdsPlugin(),
         new webpack.DllPlugin({
             // 本Dll文件中各模块的索引，供DllReferencePlugin读取使用
             path: './manifest/'+ dll_manifest_name + '.json',

@@ -11,6 +11,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const HashedChunkIdsPlugin = require('./config/hashedChunkIdsPlugin.js');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 const HtmlWebpackIncludeJsPlugin = require('./config/htmlWebpackIncludeJsPlugin.js');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -237,7 +238,8 @@ module.exports = {
             port: 9000,
             server: { baseDir: [browserSyncBaseDir] }
         }),
-
+        new HashedChunkIdsPlugin(),
+        new webpack.HashedModuleIdsPlugin(),
         new webpack.DllReferencePlugin({
             // 指定一个路径作为上下文环境，需要与DllPlugin的context参数保持一致，建议统一设置为项目根目录
             context: __dirname,
