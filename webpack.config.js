@@ -306,7 +306,9 @@ for (var pathname in pages) {
     };
     //根据chunks提取页面js,css和公共verdors
     if (pathname in module.exports.entry) {
-        conf.chunks = [pathname,'manifest'];
+        conf.chunks = [pathname, 'manifest']
+    } else {
+        conf.chunks = ['manifest']
     }
 
     module.exports.plugins.push(new htmlWebpackPlugin(conf));
