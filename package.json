@@ -9,6 +9,7 @@
     "vn_dll": "cross-env-shell NODE_ENV=production COUNTRY=vietnam webpack --progress --colors --config ./webpack-dll.config.js",
     "vn_dll_dev": "cross-env-shell COUNTRY=vietnam node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js --progress --colors --config ./webpack-dll.config.js",
     "arb_dll": "cross-env-shell NODE_ENV=production COUNTRY=arb webpack --progress --colors --config ./webpack-dll.config.js",
+    "arb_dll_dev": "cross-env-shell NODE_ENV=production COUNTRY=arb webpack --progress --colors --config ./webpack-dll.config.js",
     "watch": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js  --progress --watch",
     "vn_watch": "cross-env-shell COUNTRY=vietnam node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js  --progress --watch --config ./webpack.config.js",
     "arb_watch": "cross-env-shell COUNTRY=arb node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js  --progress --watch --config ./webpack.config.js",
