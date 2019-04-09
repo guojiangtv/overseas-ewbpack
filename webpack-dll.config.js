@@ -14,6 +14,8 @@ const prod = process.env.NODE_ENV === 'production' ? true : false;
 const isPc = process.env.PLATFORM == 'pc' ? true : false;
 //是否是越南版编译
 let isVn = process.env.COUNTRY == 'vietnam' ? true : false;
+//是否是中东版编译
+let isArb = process.env.COUNTRY == 'arb' ? true : false;
 
 //webpack配置
 const postcssConfigDir = './config/postcss.config.js';
@@ -34,6 +36,13 @@ if(isPc){
     outputPublicDir = '//static.cblive.tv/dist/v2/vietnam/mobile/';
     entries = ['vue', 'axios', 'layer'];
     dll_manifest_name = 'dll_vn_manifest';
+}else if(isArb){
+    baseEntryDir = './national-overseas/src/arb/mobile/';
+    entryDir = baseEntryDir + '**/*.js';
+    outputDir = path.resolve(__dirname, './national-overseas/dist/arb/mobile/');
+    outputPublicDir = '//static.cblive.tv/dist/v2/arb/mobile/';
+    entries = ['vue', 'axios', 'layer'];
+    dll_manifest_name = 'dll_arb_manifest';
 }else{
     baseEntryDir = './national-overseas/src/v2/mobile/';
     entryDir = baseEntryDir + '**/*.*';

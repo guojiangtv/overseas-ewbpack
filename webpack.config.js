@@ -24,6 +24,8 @@ let prod = process.env.NODE_ENV === 'production' ? true : false;
 let isPc = process.env.PLATFORM == 'pc' ? true : false;
 //是否是越南版编译
 let isVn = process.env.COUNTRY == 'vietnam' ? true : false;
+//是否是中东版编译
+let isArb = process.env.COUNTRY == 'arb' ? true : false;
 
 //webpack配置
 let postcssConfigDir = './config/postcss.config.js';
@@ -52,7 +54,6 @@ if(isPc){
         `${baseEntryDir}js/components/monitor/globalMonitor.js`
     ];
     dll_manifest_name = 'dll_pc_manifest';
-    //入口js文件配置以及公共模块配置
 }else if(isVn){
     console.log('***********************越南版编译*************************');
     baseEntryDir = basePath+ 'src/vietnam/mobile/';
@@ -72,7 +73,25 @@ if(isPc){
         `${baseEntryDir}js/components/monitor/globalMonitor.js`
     ];
     dll_manifest_name = 'dll_vn_manifest';
-    //入口js文件配置以及公共模块配置
+}else if(isArb){
+    console.log('***********************中东版编译*************************');
+    baseEntryDir = basePath+ 'src/arb/mobile/';
+    entryDir = baseEntryDir + 'js/**/*.js';
+    outputDir = path.resolve(__dirname, basePath+ 'dist/arb/mobile/');
+    outputPublicDir = '//static.joylive.tv/dist/arb/mobile/';
+    basePageEntry = basePath+ 'html/src/arb/mobile/';
+    basePageOutput = basePath+ 'html/dist/arb/mobile/';
+    browserSyncBaseDir = basePath + 'html/dist/'
+    //clean folder
+    cleanDir = [
+        path.resolve(__dirname,  basePath+'dist/arb/mobile/css'),
+        path.resolve(__dirname,  basePath+'dist/arb/mobile/js')
+    ];
+    inlineSource = [
+        `${baseEntryDir}js/components/flexible.js`,
+        `${baseEntryDir}js/components/monitor/globalMonitor.js`
+    ];
+    dll_manifest_name = 'dll_arb_manifest';
 }else{
     //触屏版目录配置
     console.log('***********************触屏版编译*************************');
