@@ -5,7 +5,7 @@
 import '<%= stylePath %>'
 import Vue from 'vue'
 import axios from 'axios'
-import {goPersonalPage} from 'common'
+import {goPersonalPage} from '../../js/common/common'
 
 new Vue({
     el: '#app',
@@ -18,11 +18,11 @@ new Vue({
     },
     methods: {
         // 点击头像，进入个人主页
-        goPersonalPage (id) {
+        goPersonalPage (id:number) {
             goPersonalPage(id)
         },
         // 点击关注按钮，关注主播
-        attention (uid, index) {
+        attention (uid:number, index:number) {
             axios.get('***', {
                 params: {
                     mid: uid
@@ -34,7 +34,7 @@ new Vue({
                         _data = JSON.parse(_data)
                     }
                     if (_data.errno === 0) {
-                        this.rankList[index].isFollow = true
+                        // this.rankList[index].isFollow = true
                     } else {
                         console.log(_data.msg)
                     }

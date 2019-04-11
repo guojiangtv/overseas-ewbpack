@@ -76,7 +76,7 @@ module.exports = class extends Generators {
                     ejs: answers.pName + '.ejs',
                     ejs_js: answers.pName + '.js',
                     less: answers.pName + '.less',
-                    js: answers.pName + '.js'
+                    ts: answers.pName + '.ts'
                 }
 
                 this.props = answers
@@ -184,7 +184,7 @@ module.exports = class extends Generators {
             'ejs_js': path.resolve(config.outputHtmlDir, config['outputHtml' + type + 'Dir'], files['ejs_js']),
             'imgs': path.resolve(config.outputStaticDir, config['outputStatic' + type + 'DirForImgs'], this.props.pName),
             'less': path.resolve(config.outputStaticDir, config['outputStatic' + type + 'DirForStyles'], files['less']),
-            'js': path.resolve(config.outputStaticDir, config['outputStatic' + type + 'DirForJS'], files['js'])
+            'ts': path.resolve(config.outputStaticDir, config['outputStatic' + type + 'DirForJS'], files['ts'])
         }
 
         this.log(chalk.green('**** ' + type + ' ****'))
@@ -199,8 +199,8 @@ module.exports = class extends Generators {
         this.log(chalk.green('---- static less ----'))
         this.log(chalk.blue(this.props.path[type]['less']))
 
-        this.log(chalk.green('---- static js ----'))
-        this.log(chalk.blue(this.props.path[type]['js']))
+        this.log(chalk.green('---- static ts ----'))
+        this.log(chalk.blue(this.props.path[type]['ts']))
     }
 
     /**
@@ -258,10 +258,10 @@ module.exports = class extends Generators {
 
         // 创建脚本文件
         this.fs.copyTpl(
-            this.templatePath(path.resolve(this.sourceRoot(), './' + type.toLowerCase() + '/scripts/main.js')),
-            paths['js'],
+            this.templatePath(path.resolve(this.sourceRoot(), './' + type.toLowerCase() + '/scripts/main.ts')),
+            paths['ts'],
             {
-                stylePath: path.relative(path.dirname(paths['js']), paths['less']).replace(/\\/g, '/'),
+                stylePath: path.relative(path.dirname(paths['ts']), paths['less']).replace(/\\/g, '/'),
                 youName: this.props.uName,
                 Date: moment().format('YYYY-DD-MM HH:mm:ss')
             }
@@ -289,9 +289,9 @@ module.exports = class extends Generators {
         }
 
         try {
-            fs.accessSync(path.dirname(paths['js']))
+            fs.accessSync(path.dirname(paths['ts']))
         } catch (err) {
-            this._mkdirPSync(path.dirname(paths['js']))
+            this._mkdirPSync(path.dirname(paths['ts']))
         }
     }
 
