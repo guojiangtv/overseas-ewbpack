@@ -59,7 +59,9 @@ module.exports = {
         // 取消禁止扩展原生对象
         "no-extend-native": "off",
         //不限制每行的属性数量
-        "vue/max-attributes-per-line": "off"
+        "vue/max-attributes-per-line": "off",
+        // 组件的属性必须为一定的顺序
+        'vue/order-in-components': 'off'
     },
     settings: {
         /**
