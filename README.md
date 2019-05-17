@@ -1,3 +1,16 @@
+### eslint对vue组件的监视及自动修改设置
+在vscode的setting.json文件中添加以下内容
+```
+"eslint.autoFixOnSave": true,
+"eslint.validate": [
+    "javascript",{
+        "language": "vue",
+        "autoFix": true
+    },
+    "html",
+    "vue"
+],
+```
 ### 海外版前端自动化编译构建工具使用说明
 此工具仅适用于海外前后端分离项目，之前的php项目仍就采用之前的gulp编译并手动发布  
 此项目采用非覆盖式编译，公共js文件打包成一个dll.js，common.js采用ES6 Module形式，项目中用到哪个方法直接import 引入该方法即可
@@ -25,8 +38,7 @@ git clone git@gitlab.cblive.tv:root/national-overseas.git
 
 建议在overseas-webpack文件夹下建立trunk文件夹并拉取已下svn地址 ，用于查看提交文件列表  
 html文件夹        https://10.0.0.15/svn/develop/website/trunk/cblive/web/html  
-dist/v2           https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/v2  
-dist/vietnam      https://10.0.0.15/svn/develop/website/trunk/static_cblive/dist/vietnam  
+static_cblive    https://10.0.0.15/svn/develop/website/trunk/static_cblive
 
 #### mobile端编译命令
 yarn dll    打包公共文件生成dll.js  
@@ -35,6 +47,8 @@ yarn build  打包
 yarn deploy 压缩打包  
 #### 越南版mobile端编译命令  都加上vn_前缀
 yarn vn_dll
+#### 中东版mobile端编译命令  都加上arb_前缀
+yarn arb_dll
 #### pc端编译命令 都加上pc_前缀
 yarn pc_dll
 
