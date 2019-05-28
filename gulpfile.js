@@ -4,7 +4,6 @@ cleanCss     = require('gulp-clean-css'),
 uglify       = require('gulp-uglify'),
 less         = require('gulp-less'),
 plumber      = require('gulp-plumber'), // less报错时不退出watch
-clean        = require('gulp-clean'),
 fs           = require('fs'), //获取真实路径
 runSequence  = require('run-sequence'),
 rev          = require('gulp-rev-params'),
@@ -77,7 +76,6 @@ gulp.task('images', function() {
     return gulp.src(m_src.img, { base: m_src.base })
         .pipe(gulpif(!isRelease, changed(m_output)))
         .pipe(gulpif(isRelease, rev()))
-        // .pipe(tiny())
         .pipe(gulp.dest(m_output))
         .pipe(gulpif(isRelease, rev.manifest()))
         .pipe(gulpif(isRelease,gulp.dest('./rev/mobile/img/')));
@@ -85,9 +83,9 @@ gulp.task('images', function() {
 
 gulp.task('rev', function() {
     //为php模板添加版本号
-    gulp.src(['./rev/mobile/**/*.json', '../../cblive/web/protected/modules/mobile/views/**/*.php'])
+    gulp.src(['./rev/mobile/**/*.json', 'z:/cblive/web/protected/modules/mobile/views/**/*.php'])
         .pipe(revCollector({replaceReved: true}))
-        .pipe(gulp.dest(fs.realpathSync('../../cblive/web/protected/modules/mobile/views/')));
+        .pipe(gulp.dest(fs.realpathSync('z:/cblive/web/protected/modules/mobile/views/')));
     //为css中图片添加版本号
     gulp.src(['./rev/mobile/img/*.json', './national-overseas/dist/mobile/css/*'])
         .pipe(revCollector({replaceReved: true}))
