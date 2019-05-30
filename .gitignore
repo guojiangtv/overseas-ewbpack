@@ -2,6 +2,8 @@
 node_modules/
 manifest/
 trunk/
+mock/*
+!mock/recharge.js
 national-overseas/*
 !national-overseas/.git
 entry.txt
