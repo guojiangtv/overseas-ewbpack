@@ -3,7 +3,7 @@ node_modules/
 mock/*
 !mock/worldcup.js
 manifest/
-trunk/
+rev/
 national-overseas/*
 !national-overseas/.git
 entry.txt
