@@ -32,7 +32,7 @@
     "axios": "0.17.1",
     "element-ui": "2.3.2",
     "es6-promise": "4.2.4",
-    "jquery": "3.3.1",
+    "jquery": "3.5.0",
     "vue": "2.5.13",
     "vue-router": "^3.0.1"
   },
