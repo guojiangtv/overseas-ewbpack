@@ -29,7 +29,7 @@
   "author": "Jesse",
   "license": "ISC",
   "dependencies": {
-    "axios": "0.17.1",
+    "axios": "0.21.1",
     "element-ui": "2.3.2",
     "es6-promise": "4.2.4",
     "jquery": "3.3.1",
