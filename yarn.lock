@@ -5153,8 +5153,8 @@ locate-path@^3.0.0:
     path-exists "^3.0.0"
 
 locutus@^2.0.5:
-  version "2.0.10"
-  resolved "http://registry.npm.taobao.org/locutus/download/locutus-2.0.10.tgz#f903619466a98a4ab76e8b87a5854b55a743b917"
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/locutus/-/locutus-2.0.15.tgz#d75b9100713aaaf30be8b38ed6543910498c0db0"
 
 lodash._basecopy@^3.0.0:
   version "3.0.1"
@@ -8401,7 +8401,7 @@ uglify-js@2.6.2:
     uglify-to-browserify "~1.0.0"
     yargs "~3.10.0"
 
-uglify-js@3.4.x:
+uglify-js@3.4.9, uglify-js@3.4.x:
   version "3.4.9"
   resolved "http://registry.npm.taobao.org/uglify-js/download/uglify-js-3.4.9.tgz#af02f180c1207d76432e473ed24a28f4a782bae3"
   dependencies:
